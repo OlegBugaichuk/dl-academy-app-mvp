@@ -4,11 +4,11 @@
     <div class="row">
         <div class="col">
             <form method="post">
+                {% csrf_token %}
                 {% for field in form %}
-                    <div class="row mb-3">
-                        <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label">{{ field.label }}</label>
-                        <div class="col-sm-10">
-                            {{ field|addclass: "form-control" }}
+                    <div class="row mb-3  justify-content-center">
+                        <div class="col-sm-5">
+                            {{ field|addclass:"form-control" }}
                         </div>
                     </div>
                 {% endfor %}

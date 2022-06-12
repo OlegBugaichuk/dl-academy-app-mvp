@@ -13,7 +13,9 @@ class Types(models.IntegerChoices):
 class CustomUser(AbstractUser):
     patronomyc = models.CharField(_("patronomyc"), max_length=150, blank=True)
     type = models.IntegerField(choices=Types.choices, default=Types.STUDENT)
-    edu_groups = models.ManyToManyField("users.Group", related_name="students")
+    edu_groups = models.ManyToManyField("users.Group", 
+                                        related_name="students", 
+                                        blank=True, null=True)
 
 
 class UserMentorRel(models.Model):
@@ -36,3 +38,6 @@ class Group(models.Model):
     course = models.ForeignKey("courses.Course",
                                on_delete=models.CASCADE,
                                related_name='groups')
+    
+    def __str__(self):
+        return self.number
