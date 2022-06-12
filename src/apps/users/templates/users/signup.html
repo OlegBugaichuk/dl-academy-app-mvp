@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load form_filter %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <form method="post">
+                {% for field in form %}
+                    <div class="row mb-3">
+                        <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label">{{ field.label }}</label>
+                        <div class="col-sm-10">
+                            {{ field|addclass: "form-control" }}
+                        </div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Зерегистрировать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'courses',
-    'mdeditor'
+    'mdeditor',
+    'core'
 ]
 
 MIDDLEWARE = [
