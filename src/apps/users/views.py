@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.views.generic import FormView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -19,5 +20,20 @@ class SignUpView(FormView):
             raise Http404()
         
         return super().get(request, *args, **kwargs)
+    
+
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        if user.type != Types.OWNER:
+            raise Http404()
+
+        form = self.form_class(request.POST or None)
+        print(form)
+        if form.is_valid():
+            form.save()
+        return redirect(self.success_url)
+        
+        
     
         
