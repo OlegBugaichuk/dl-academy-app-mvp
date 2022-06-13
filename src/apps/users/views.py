@@ -1,10 +1,11 @@
 from django.shortcuts import redirect
 from django.views.generic import FormView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView as AuthLoginView
 from django.utils.decorators import method_decorator
 from django.http.response import Http404
 from django.urls import reverse_lazy
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginForm
 from .models import Types
 
 
@@ -35,5 +36,6 @@ class SignUpView(FormView):
         return redirect(self.success_url)
         
         
-    
-        
+class LoginView(AuthLoginView):
+    form_class = LoginForm
+    template_name = 'users/login.html'

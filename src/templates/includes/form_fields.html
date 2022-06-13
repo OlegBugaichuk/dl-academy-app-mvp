@@ -1,0 +1,20 @@
+{% load form_filter %}
+
+{% for field in form %}
+    <div class="row mb-3  justify-content-center">
+        <div class="col-sm-5">
+            {{ field.errors }}
+            {% if not field.errors %}
+                {{ field|addclass:"form-control" }}
+            {% else %}
+                {{ field|addclass:"form-control"|addclass:"is_invalid" }}
+                {% for error in field.errors %}
+                    <div id="{{ field.id_for_label }}" class="invalid-feedback">
+                        {{ error|escape }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+        </div>
+    </div>
+{% endfor %}
